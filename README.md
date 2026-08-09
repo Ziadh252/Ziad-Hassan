@@ -1,17 +1,5 @@
-# Ziad Hassan — White Creative CV
+# Ziad Hassan — Colorful Creative CV
 
-A responsive, animated GitHub Pages CV.
+White, colorful, animated GitHub Pages CV using the supplied profile photo.
 
-## Files
-- index.html
-- style.css
-- script.js
-- profile.png
-- Ziad Hassan- Finance.pdf (if included)
-
-## GitHub Pages
-Create a public repository, upload all files to `main`, then:
-Settings → Pages → Deploy from a branch → `main` → `/ (root)` → Save.
-
-Your web CV will be available at:
-`https://YOUR-USERNAME.github.io/REPOSITORY-NAME/`
+Upload `index.html`, `style.css`, `script.js`, and `profile.png` to the repository root. Keep the existing PDF if you want the Download CV button to work.
