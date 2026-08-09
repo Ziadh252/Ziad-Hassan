@@ -1,5 +1,16 @@
-# Ziad Hassan — Colorful Creative CV
+# Ziad Hassan — Interactive Color CV
 
-White, colorful, animated GitHub Pages CV using the supplied profile photo.
+White, colorful, animated CV / portfolio for GitHub Pages.
 
-Upload `index.html`, `style.css`, `script.js`, and `profile.png` to the repository root. Keep the existing PDF if you want the Download CV button to work.
+### Features
+- Animated hero and floating gradients
+- Colorized profile photo
+- Expandable full experience for every role
+- Scroll reveal + animated skill bars
+- Hover 3D tilt
+- Responsive design
+- Downloadable PDF CV
+
+### Publish
+Upload all files to the `main` branch, keep GitHub Pages on `main` + `/(root)`, then open:
+`https://ziadh252.github.io/Ziad-Hassan/`
