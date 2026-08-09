@@ -1,16 +1,17 @@
-# Ziad Hassan — Interactive Color CV
+# Ziad Hassan — Interactive Finance Portfolio
 
-White, colorful, animated CV / portfolio for GitHub Pages.
+Dark, animated GitHub Pages CV with:
+- Detailed job descriptions for every listed role
+- Expand/collapse career timeline
+- Finance, tax, FP&A, Power BI, ERP and automation sections
+- Career-tenure chart based on CV dates
+- Animated skill meters and hover effects
+- Systems / implementation workflow
+- Education and certifications
+- Downloadable original CV PDF
 
-### Features
-- Animated hero and floating gradients
-- Colorized profile photo
-- Expandable full experience for every role
-- Scroll reveal + animated skill bars
-- Hover 3D tilt
-- Responsive design
-- Downloadable PDF CV
+## GitHub Pages
+Upload all files to the `main` branch and keep Pages set to `main` + `/(root)`.
 
-### Publish
-Upload all files to the `main` branch, keep GitHub Pages on `main` + `/(root)`, then open:
-`https://ziadh252.github.io/Ziad-Hassan/`
+Live URL:
+https://ziadh252.github.io/Ziad-Hassan/

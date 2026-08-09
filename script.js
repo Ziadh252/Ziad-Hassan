@@ -1,43 +1,44 @@
-const progress=document.querySelector('.progress');
-const updateProgress=()=>{const h=document.documentElement;progress.style.width=(scrollY/(h.scrollHeight-innerHeight)*100)+'%'};
-window.addEventListener('scroll',updateProgress,{passive:true});updateProgress();
+const scrollLine=document.querySelector('.scroll-line');
+const updateScroll=()=>{const d=document.documentElement;scrollLine.style.width=(scrollY/(d.scrollHeight-innerHeight)*100)+'%'};
+addEventListener('scroll',updateScroll,{passive:true});updateScroll();
 
-const obs=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')}),{threshold:.12});
-document.querySelectorAll('.reveal,.skill').forEach(x=>obs.observe(x));
+const observer=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')}),{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+
+document.querySelectorAll('.job-card').forEach(card=>{
+  card.addEventListener('click',()=>{
+    const job=card.closest('.job');
+    const open=job.classList.contains('active');
+    document.querySelectorAll('.job.active').forEach(x=>x.classList.remove('active'));
+    if(!open) job.classList.add('active');
+  });
+});
+document.querySelectorAll('.close-role').forEach(btn=>{
+  btn.addEventListener('click',e=>{e.stopPropagation();btn.closest('.job').classList.remove('active')});
+});
+
+document.querySelectorAll('.topbar nav a').forEach(a=>{
+  a.addEventListener('click',()=>document.querySelectorAll('.topbar nav a').forEach(x=>x.classList.remove('active')));
+});
+const sections=[...document.querySelectorAll('main section[id]')];
+const navLinks=[...document.querySelectorAll('.topbar nav a')];
+const navObserver=new IntersectionObserver(entries=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      navLinks.forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+entry.target.id));
+    }
+  });
+},{rootMargin:'-35% 0px -55% 0px'});
+sections.forEach(s=>navObserver.observe(s));
 
 document.getElementById('year').textContent=new Date().getFullYear();
 
-// Expandable career stories — one open at a time for a clean, interactive CV.
-document.querySelectorAll('.expand').forEach(btn=>{
-  btn.addEventListener('click',()=>{
-    const job=btn.closest('.job');
-    const wasOpen=job.classList.contains('open');
-    document.querySelectorAll('.job.open').forEach(x=>x.classList.remove('open'));
-    if(!wasOpen) job.classList.add('open');
-  });
-});
-
-// Open a role when its card itself is clicked, except links/buttons.
-document.querySelectorAll('.job-card').forEach(card=>{
-  card.addEventListener('click',e=>{
-    if(e.target.closest('a,button')) return;
-    const job=card.closest('.job');
-    const wasOpen=job.classList.contains('open');
-    document.querySelectorAll('.job.open').forEach(x=>x.classList.remove('open'));
-    if(!wasOpen) job.classList.add('open');
-  });
-});
-
-// Subtle 3D tilt on larger screens.
-if(window.matchMedia('(min-width: 900px)').matches){
-  document.querySelectorAll('.feature,.panel,.stats,.hero-photo').forEach(el=>{
-    el.addEventListener('mousemove',e=>{
-      const r=el.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;
-      el.style.transform=`perspective(900px) rotateX(${(-y*3).toFixed(2)}deg) rotateY(${(x*3).toFixed(2)}deg) translateY(-2px)`;
-    });
-    el.addEventListener('mouseleave',()=>el.style.transform='');
-  });
+if(matchMedia('(min-width:900px)').matches){
+ document.querySelectorAll('.skill-card,.system-panel,.edu-card').forEach(card=>{
+   card.addEventListener('mousemove',e=>{
+     const r=card.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;
+     card.style.transform=`perspective(700px) rotateX(${y*-3}deg) rotateY(${x*3}deg) translateY(-4px)`;
+   });
+   card.addEventListener('mouseleave',()=>card.style.transform='');
+ });
 }
-
-const sections=[...document.querySelectorAll('main section[id]')],links=[...document.querySelectorAll('nav a')];
-window.addEventListener('scroll',()=>{let id='home';sections.forEach(s=>{if(scrollY>=s.offsetTop-180)id=s.id});links.forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+id))},{passive:true});
