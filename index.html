@@ -294,5 +294,29 @@
 </main>
 <footer>© <span id="year"></span> Ziad Hassan · Finance × Data × Automation</footer>
 <script src="script.js"></script>
+  <script>
+document.addEventListener('click', function(e) {
+    const link = e.target.closest('a');
+    if (!link) return;
+
+    const href = link.href || '';
+
+    if (href.includes('linkedin.com')) {
+        gtag('event', 'linkedin_click');
+    }
+
+    if (href.startsWith('mailto:')) {
+        gtag('event', 'email_click');
+    }
+
+    if (href.startsWith('tel:')) {
+        gtag('event', 'phone_click');
+    }
+
+    if (href.toLowerCase().includes('.pdf')) {
+        gtag('event', 'cv_download');
+    }
+});
+</script>
 </body>
 </html>
